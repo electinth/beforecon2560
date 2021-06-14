@@ -13,6 +13,11 @@
 		margin: 0 auto;
 		box-sizing: border-box;
 	}
+
+  .sharer {
+    width: 250px;
+    margin: 20px auto;
+  }
 </style>
 
 <elect-staging-banner></elect-staging-banner>
@@ -25,6 +30,8 @@
 	<slot></slot>
 </main>
 
-<elect-sharer></elect-sharer>
+<div class="sharer">
+  <elect-sharer></elect-sharer>
+</div>
 
 <elect-footer></elect-footer>
