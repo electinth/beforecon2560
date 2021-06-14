@@ -17,7 +17,7 @@
 
 <elect-staging-banner></elect-staging-banner>
 
-<elect-navbar title-text="Referendum"></elect-navbar>
+<elect-navbar title-text="ก่อนจะเป็นรัฐธรรมนูญ 2560"></elect-navbar>
 
 <Nav {segment}/>
 
