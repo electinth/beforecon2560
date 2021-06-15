@@ -3,11 +3,21 @@
   import timeline_data from "data/timeline.csv"
 
   const anim_text = "cubic-bezier(0.250, 0.460, 0.450, 0.940) both"
-  const format_date = (date_text) => {
+
+  const parse_date = (date_text) => {
     let date_array = date_text.split("-")
-    let date = new Date(date_array[2] - 543, date_array[1] - 1, date_array[0])
-    return date.toLocaleDateString("th-TH", { year: "numeric", month: "short", day: "numeric" })
+    return new Date(date_array[2] - 543, date_array[1] - 1, date_array[0])
   }
+  const format_date = (date_text) => {
+    let date = parse_date(date_text)
+    return date.toLocaleDateString("th-TH", { month: "short", day: "numeric" })
+  }
+  const year_num = (date_text) => {
+    let date = parse_date(date_text)
+    return +date.getFullYear()
+  }
+
+  let current_year
 </script>
 
 <style>
@@ -15,7 +25,7 @@
     border-radius: 1em;
     display: inline-block;
     max-width: 80%;
-    padding: 0.5em;
+    padding: 0.5em 1em;
     margin-top: 1em;
     margin-bottom: 1em;
     box-sizing: border-box;
@@ -39,9 +49,12 @@
     background-color: lightcoral;
   }
 
-  #chats .date {
+  #chats .year {
     width: 100%;
     text-align: center;
+  }
+  #chats .date {
+    display: inline-block;
   }
 
   /* ----------------------------------------------
@@ -169,12 +182,20 @@
   -->
 
   {#each timeline_data as { event_no, event_name, date, event_type, event_persons, cause }}
-    <Saos animation="fade-in 1.2s {anim_text}" once={true}>
-      <div class="date">{format_date(date)}</div>
-    </Saos>
+    {#if current_year != year_num(date) }
+      <Saos animation="fade-in 1.2s {anim_text}" once={true}>
+        <div class="year">{ 'พ.ศ. ' + ((current_year = year_num(date)) + 543) }</div>
+      </Saos>
+    {/if}
     <div class="chat-container-{event_type == 2 ? 'left' : 'right'}">
       <Saos animation="scale-in-b{event_type == 2 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
+        {#if event_type == 1 }
+          <div class="date">{format_date(date)}</div>
+        {/if}
         <div class="chat group{event_persons} {event_type == 2 ? 'left' : 'right'}">{event_name}</div>
+        {#if event_type == 2 }
+          <div class="date">{format_date(date)}</div>
+        {/if}
       </Saos>
     </div>
   {/each}
