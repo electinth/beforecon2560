@@ -18,9 +18,22 @@
   }
 
   let current_year
+  for (let i = 0; i < timeline_data.length; i++) {
+    let year = year_num(timeline_data[i].date)
+    timeline_data[i].show_year = (current_year !== year)
+    current_year = year
+
+    timeline_data[i].cause = timeline_data[i].cause.split("\n\n")
+    console.log(timeline_data[i].cause)
+  }
 </script>
 
 <style>
+  :global(h1) {
+    font-family: Kondolar Thai, serif;
+    text-align: center;
+  }
+
   #chats .chat {
     border-radius: 1em;
     display: inline-block;
@@ -40,18 +53,22 @@
     border-bottom-right-radius: 2px;
   }
   #chats .chat.group1  {
-    background-color: lightgreen;
+    background-color: palegreen;
   }
   #chats .chat.group2 {
-    background-color: skyblue;
+    background-color: plum;
   }
   #chats .chat.group3 {
-    background-color: lightcoral;
+    background-color: pink;
   }
 
   #chats .year {
     width: 100%;
     text-align: center;
+    font-family: Kondolar Thai, serif;
+  }
+  #chats .year.hidden {
+    display: none;
   }
   #chats .date {
     display: inline-block;
@@ -181,19 +198,17 @@
   // 3 = ภาคประชาชน (กลุ่มนักวิชาการ นักศึกษา ประชาชน และ NGO)
   -->
 
-  {#each timeline_data as { event_no, event_name, date, event_type, event_persons, cause }}
-    {#if current_year != year_num(date) }
-      <Saos animation="fade-in 1.2s {anim_text}" once={true}>
-        <div class="year">{ 'พ.ศ. ' + ((current_year = year_num(date)) + 543) }</div>
-      </Saos>
-    {/if}
-    <div class="chat-container-{event_type == 2 ? 'left' : 'right'}">
-      <Saos animation="scale-in-b{event_type == 2 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
-        {#if event_type == 1 }
+  {#each timeline_data as { event_no, event_name, date, event_type, event_persons, cause, show_year }}
+    <Saos animation="fade-in 1.2s {anim_text}" once={true}>
+      <div class="year {show_year ? '' : 'hidden'}">{'พ.ศ. ' + (year_num(date) + 543)}</div>
+    </Saos>
+    <div class="chat-container-{event_type == 1 ? 'left' : 'right'}">
+      <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
+        {#if event_type == 2 }
           <div class="date">{format_date(date)}</div>
         {/if}
-        <div class="chat group{event_persons} {event_type == 2 ? 'left' : 'right'}">{event_name}</div>
-        {#if event_type == 2 }
+        <div class="chat group{event_persons} {event_type == 1 ? 'left' : 'right'}">{event_name}</div>
+        {#if event_type == 1 }
           <div class="date">{format_date(date)}</div>
         {/if}
       </Saos>
