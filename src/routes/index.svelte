@@ -19,7 +19,7 @@
     return +date.getFullYear()
   }
 
-  const url_regex = /(http[^\s]+)/
+  const url_regex = /(http[^\s]+)/g
 
   let current_year
   for (let i = 0; i < timeline_data.length; i++) {
@@ -30,10 +30,12 @@
     timeline_data[i].cause = timeline_data[i].cause.split("\n\n")
     timeline_data[i].paragraphs = []
     for (let j = 0; j < timeline_data[i].cause.length; j++) {
-      let urls = timeline_data[i].cause[j].match(url_regex)
-      if (urls) {
-        timeline_data[i].paragraphs.push(timeline_data[i].cause[j].replace(url_regex, ''))
-        timeline_data[i].paragraphs.push(urls[0])
+      let urls = [...timeline_data[i].cause[j].matchAll(url_regex)]
+      if (urls.length > 0) {
+        timeline_data[i].paragraphs.push(timeline_data[i].cause[j].split(urls[0][0])[0])
+        for (let url of urls) {
+          timeline_data[i].paragraphs.push(url[0])
+        }
       } else {
         timeline_data[i].paragraphs.push(timeline_data[i].cause[j])
       }
@@ -60,7 +62,7 @@
   #chats .chat {
     border-radius: 1em;
     display: inline-block;
-    max-width: 80%;
+    max-width: 75%;
     padding: 0.5em 1em;
     margin-top: 0.2em;
     margin-bottom: 0.2em;
@@ -120,9 +122,13 @@
     display: none;
   }
   #chats .date {
-    margin-left: 0.5em;
-    margin-right: 0.5em;
     display: inline-block;
+  }
+  #chats .date.left {
+    margin-left: 0.5em;
+  }
+  #chats .date.right {
+    margin-right: 0.5em;
   }
 
   /* ----------------------------------------------
@@ -259,18 +265,18 @@
       </Saos>
       <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
         {#if event_type == 2 }
-          <div class="date">{format_date(date)}</div>
+          <div class="date right">{format_date(date)}</div>
         {/if}
         <div class="chat group{event_persons} {event_type == 1 ? 'left' : 'right'}">{event_name}</div>
         {#if event_type == 1 }
-          <div class="date">{format_date(date)}</div>
+          <div class="date left">{format_date(date)}</div>
         {/if}
       </Saos>
       {#each paragraphs as paragraph}
         <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
           <div class="chat cause group{event_persons} {event_type == 1 ? 'left' : 'right'}">
             {#if paragraph.match(url_regex) }
-              <a href={paragraph}>{paragraph.length > w/11 ? (paragraph.substring(0, w/11) + '…') : paragraph}</a>
+              <a href={paragraph}>{paragraph.length > w/12 ? (paragraph.substring(0, w/12) + '…') : paragraph}</a>
             {:else}
               {paragraph}
             {/if}
