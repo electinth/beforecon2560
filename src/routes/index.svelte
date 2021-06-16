@@ -2,6 +2,8 @@
   import Saos from "saos";
   import timeline_data from "data/timeline.csv"
 
+  let w
+
   const anim_text = "cubic-bezier(0.250, 0.460, 0.450, 0.940) both"
 
   const parse_date = (date_text) => {
@@ -17,6 +19,8 @@
     return +date.getFullYear()
   }
 
+  const url_regex = /(http[^\s]+)/
+
   let current_year
   for (let i = 0; i < timeline_data.length; i++) {
     let year = year_num(timeline_data[i].date)
@@ -24,7 +28,16 @@
     current_year = year
 
     timeline_data[i].cause = timeline_data[i].cause.split("\n\n")
-    console.log(timeline_data[i].cause)
+    timeline_data[i].paragraphs = []
+    for (let j = 0; j < timeline_data[i].cause.length; j++) {
+      let urls = timeline_data[i].cause[j].match(url_regex)
+      if (urls) {
+        timeline_data[i].paragraphs.push(timeline_data[i].cause[j].replace(url_regex, ''))
+        timeline_data[i].paragraphs.push(urls[0])
+      } else {
+        timeline_data[i].paragraphs.push(timeline_data[i].cause[j])
+      }
+    }
   }
 </script>
 
@@ -34,24 +47,32 @@
     text-align: center;
   }
 
+  #chats .chat-container-left {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  #chats .chat-container-right {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: right;
+  }
+
   #chats .chat {
     border-radius: 1em;
     display: inline-block;
     max-width: 80%;
     padding: 0.5em 1em;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
     box-sizing: border-box;
   }
-  #chats .chat-container-right {
-    text-align: right;
-  }
   #chats .chat.left  {
-    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
   }
   #chats .chat.right {
-    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
   }
+
   #chats .chat.group1  {
     background-color: palegreen;
   }
@@ -60,6 +81,34 @@
   }
   #chats .chat.group3 {
     background-color: pink;
+  }
+
+  #chats .chat.cause {
+    background-color: transparent;
+    border-width: 1.5px;
+    border-style: solid;
+  }
+  #chats .chat.cause.group1  {
+    border-color: palegreen;
+  }
+  #chats .chat.cause.group2 {
+    border-color: plum;
+  }
+  #chats .chat.cause.group3 {
+    border-color: pink;
+  }
+
+  #chats .actor {
+    font-weight: bold;
+  }
+  #chats .actor.group1  {
+    color: palegreen;
+  }
+  #chats .actor.group2 {
+    color: plum;
+  }
+  #chats .actor.group3 {
+    color: pink;
   }
 
   #chats .year {
@@ -71,6 +120,8 @@
     display: none;
   }
   #chats .date {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
     display: inline-block;
   }
 
@@ -174,7 +225,7 @@
 
 <h1>จำลองไลน์กลุ่มรัฐธรรมนูญ 2560</h1>
 
-<p>
+<p bind:clientWidth={w}>
   รัฐธรรมนูญแห่งราชอาณาจักรไทย พุทธศักราช 2560 ถูกวิพากษ์วิจารณ์อย่างมากในหลายประเด็น ไม่ว่าจะเป็นที่มาของผู้ร่างรัฐธรรมนูญที่ไม่เป็นประชาธิปไตย การสร้างบทบัญญัติที่วางกระบวนการสืบทอดอำนาจให้กับ คสช. คณะรัฐประหารซึ่งยึดอำนาจการปกครองจากรัฐบาลที่มาจากการเลือกตั้ง การปิดกั้นการแสดงความคิดเห็นเกี่ยวกับการทำประชามติร่างรัฐธรรมนูญ รวมถึงการกำหนดประเด็นคำถามในการทำประชามติที่ไม่ชัดเจน ฯลฯ
 </p>
 
@@ -198,11 +249,14 @@
   // 3 = ภาคประชาชน (กลุ่มนักวิชาการ นักศึกษา ประชาชน และ NGO)
   -->
 
-  {#each timeline_data as { event_no, event_name, date, event_type, event_persons, cause, show_year }}
+  {#each timeline_data as { event_no, event_name, date, event_type, event_persons, cause, show_year, paragraphs }}
     <Saos animation="fade-in 1.2s {anim_text}" once={true}>
       <div class="year {show_year ? '' : 'hidden'}">{'พ.ศ. ' + (year_num(date) + 543)}</div>
     </Saos>
     <div class="chat-container-{event_type == 1 ? 'left' : 'right'}">
+      <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
+        <div class="actor group{event_persons} {event_type == 1 ? 'left' : 'right'}">{event_persons}</div>
+      </Saos>
       <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
         {#if event_type == 2 }
           <div class="date">{format_date(date)}</div>
@@ -212,6 +266,17 @@
           <div class="date">{format_date(date)}</div>
         {/if}
       </Saos>
+      {#each paragraphs as paragraph}
+        <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
+          <div class="chat cause group{event_persons} {event_type == 1 ? 'left' : 'right'}">
+            {#if paragraph.match(url_regex) }
+              <a href={paragraph}>{paragraph.length > w/11 ? (paragraph.substring(0, w/11) + '…') : paragraph}</a>
+            {:else}
+              {paragraph}
+            {/if}
+          </div>
+        </Saos>
+      {/each}
     </div>
   {/each}
 
