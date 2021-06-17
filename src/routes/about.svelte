@@ -1,5 +1,12 @@
 <script>
-  // import successkid from 'images/successkid.jpg';
+  import Meta from '../components/Meta.svelte'
+
+  const metadata = {
+    title: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
+    description: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
+    image: 'images/pie.jpg',
+    url:'https://elect.in.th/referendum/'
+  }
 </script>
 
 <style>
@@ -7,7 +14,8 @@
 </style>
 
 <svelte:head>
-	<title>ก่อนจะเป็นรัฐธรรมนูญ 2560 - เกี่ยวกับโครงการ</title>
+  <title>ก่อนจะเป็นรัฐธรรมนูญ 2560 - เกี่ยวกับโครงการ</title>
+  <Meta {metadata}/>
 </svelte:head>
 
 <h1>เกี่ยวกับโครงการ</h1>
@@ -24,8 +32,3 @@
   จนถึงวันที่รัฐธรรมนูญแห่งราชอาณาจักรไทย พุทธศักราช 2560 มีผลใช้บังคับ 
   เกิดอะไรขึ้น ใครอยู่ตรงไหน และทำอะไรบ้าง
 </p>
-
-<!-- <figure>
-	<img alt="Success Kid" src="{successkid}">
-	<figcaption>Have fun with Sapper!</figcaption>
-</figure> -->

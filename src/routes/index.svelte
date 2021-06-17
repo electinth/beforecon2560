@@ -1,5 +1,14 @@
 <script>
-  import Saos from "saos";
+  import Meta from '../components/Meta.svelte'
+
+  const metadata = {
+    title: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
+    description: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
+    image: 'images/pie.jpg',
+    url:'https://elect.in.th/referendum/'
+  }
+
+  import Saos from "saos"
   import timeline_data from "data/timeline.csv"
 
   let w
@@ -230,7 +239,8 @@
 </style>
 
 <svelte:head>
-	<title>ก่อนจะเป็นรัฐธรรมนูญ 2560 - ลำดับเหตุการณ์</title>
+  <title>ก่อนจะเป็นรัฐธรรมนูญ 2560 - ลำดับเหตุการณ์</title>
+  <Meta {metadata}/>
 </svelte:head>
 
 <h1>จำลองไลน์กลุ่มรัฐธรรมนูญ 2560</h1>
