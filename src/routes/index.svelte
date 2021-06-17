@@ -113,6 +113,10 @@
     color: pink;
   }
 
+  #chats img.chat {
+    padding: 0;
+  }
+
   #chats .year {
     width: 100%;
     text-align: center;
@@ -271,6 +275,9 @@
         {#if event_type == 1 }
           <div class="date left">{format_date(date)}</div>
         {/if}
+      </Saos>
+      <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
+        <img class="chat {event_type == 1 ? 'left' : 'right'}" src="images/pie.jpg" alt="event" />
       </Saos>
       {#each paragraphs as paragraph}
         <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
