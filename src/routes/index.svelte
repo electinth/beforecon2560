@@ -85,13 +85,13 @@
   }
 
   #chats .chat.group1  {
-    background-color: palegreen;
+    background-color: MediumAquamarine;
   }
   #chats .chat.group2 {
     background-color: plum;
   }
   #chats .chat.group3 {
-    background-color: pink;
+    background-color: LightPink;
   }
 
   #chats .chat.cause {
@@ -100,26 +100,26 @@
     border-style: solid;
   }
   #chats .chat.cause.group1  {
-    border-color: palegreen;
+    border-color: MediumAquamarine;
   }
   #chats .chat.cause.group2 {
     border-color: plum;
   }
   #chats .chat.cause.group3 {
-    border-color: pink;
+    border-color: LightPink;
   }
 
   #chats .actor {
     font-weight: bold;
   }
   #chats .actor.group1  {
-    color: palegreen;
+    color: MediumAquamarine;
   }
   #chats .actor.group2 {
     color: plum;
   }
   #chats .actor.group3 {
-    color: pink;
+    color: LightPink;
   }
 
   #chats img.chat {
@@ -269,13 +269,13 @@
   // 3 = ภาคประชาชน (กลุ่มนักวิชาการ นักศึกษา ประชาชน และ NGO)
   -->
 
-  {#each timeline_data as { event_no, event_name, date, event_type, event_persons, cause, show_year, paragraphs }}
+  {#each timeline_data as { event_no, event_actor, event_name, date, event_type, event_persons, cause, show_year, paragraphs }}
     <Saos animation="fade-in 1.2s {anim_text}" once={true}>
       <div class="year {show_year ? '' : 'hidden'}">{'พ.ศ. ' + (year_num(date) + 543)}</div>
     </Saos>
     <div class="chat-container-{event_type == 1 ? 'left' : 'right'}">
       <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
-        <div class="actor group{event_persons} {event_type == 1 ? 'left' : 'right'}">{event_persons}</div>
+        <div class="actor group{event_persons} {event_type == 1 ? 'left' : 'right'}">{event_actor}</div>
       </Saos>
       <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
         {#if event_type == 2 }
@@ -287,7 +287,7 @@
         {/if}
       </Saos>
       <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
-        <img class="chat {event_type == 1 ? 'left' : 'right'}" src="images/pie.jpg" alt="event" />
+        <img class="chat {event_type == 1 ? 'left' : 'right'}" src="images/event_{`${event_no}`.padStart(2, "0")}.png" alt="event" />
       </Saos>
       {#each paragraphs as paragraph}
         <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
