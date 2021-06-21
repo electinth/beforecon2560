@@ -9,11 +9,11 @@
   }
 
   import Saos from "saos"
-  import timeline_data from "data/timeline.csv"
 
   let w
-
   const anim_text = "cubic-bezier(0.250, 0.460, 0.450, 0.940) both"
+  
+  import timeline_data from "data/timeline.csv"
 
   const parse_date = (date_text) => {
     let date_array = date_text.split("-")
@@ -36,28 +36,23 @@
     timeline_data[i].show_year = (current_year !== year)
     current_year = year
 
-    timeline_data[i].cause = timeline_data[i].cause.split("\n\n")
+    let cause = timeline_data[i].cause.split("\n\n")
     timeline_data[i].paragraphs = []
-    for (let j = 0; j < timeline_data[i].cause.length; j++) {
-      let urls = [...timeline_data[i].cause[j].matchAll(url_regex)]
+    for (let j = 0; j < cause.length; j++) {
+      let urls = [...cause[j].matchAll(url_regex)]
       if (urls.length > 0) {
-        timeline_data[i].paragraphs.push(timeline_data[i].cause[j].split(urls[0][0])[0])
+        timeline_data[i].paragraphs.push(cause[j].split(urls[0][0])[0])
         for (let url of urls) {
           timeline_data[i].paragraphs.push(url[0])
         }
       } else {
-        timeline_data[i].paragraphs.push(timeline_data[i].cause[j])
+        timeline_data[i].paragraphs.push(cause[j])
       }
     }
   }
 </script>
 
 <style>
-  :global(h1) {
-    font-family: Kondolar Thai, serif;
-    text-align: center;
-  }
-
   #chats .chat-container-left {
     margin-top: 1em;
     margin-bottom: 1em;
@@ -85,13 +80,13 @@
   }
 
   #chats .chat.group1  {
-    background-color: MediumAquamarine;
+    background-color: var(--color1);
   }
   #chats .chat.group2 {
-    background-color: plum;
+    background-color: var(--color2);
   }
   #chats .chat.group3 {
-    background-color: LightPink;
+    background-color: var(--color3);
   }
 
   #chats .chat.cause {
@@ -100,13 +95,13 @@
     border-style: solid;
   }
   #chats .chat.cause.group1  {
-    border-color: MediumAquamarine;
+    border-color: var(--color1);
   }
   #chats .chat.cause.group2 {
-    border-color: plum;
+    border-color: var(--color2);
   }
   #chats .chat.cause.group3 {
-    border-color: LightPink;
+    border-color: var(--color3);
   }
 
   #chats .actor {
@@ -114,26 +109,26 @@
     filter: brightness(80%);
   }
   #chats .actor.group1  {
-    color: MediumAquamarine;
+    color: var(--color1);
   }
   #chats .actor.group2 {
-    color: plum;
+    color: var(--color2);
   }
   #chats .actor.group3 {
-    color: LightPink;
+    color: var(--color3);
   }
 
   #chats img.chat {
     padding: 1.5px;
   }
   #chats img.chat.group1  {
-    border-color: MediumAquamarine;
+    border-color: var(--color1);
   }
   #chats img.chat.group2 {
-    border-color: plum;
+    border-color: var(--color2);
   }
   #chats img.chat.group3 {
-    border-color: LightPink;
+    border-color: var(--color3);
   }
 
   #chats .year {

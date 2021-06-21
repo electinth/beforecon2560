@@ -13,10 +13,32 @@
 		margin: 0 auto;
 		box-sizing: border-box;
 	}
+  
+  :global(h1) {
+    font-size: 3em;
+    font-family: Kondolar Thai, serif;
+    text-align: center;
+  }
+
+  :global(p:first-of-type:first-letter) {
+    float: left;
+    font-size: 3em;
+    font-family: Kondolar Thai, serif;
+    margin-top: -0.3em;
+    margin-bottom: -0.3em;
+    padding-left: 0.05em;
+    padding-right: 0.15em;
+  }
 
   .sharer {
     width: 250px;
     margin: 20px auto;
+  }
+
+  :root {
+    --color1: MediumAquamarine;
+    --color2: plum;
+    --color3: LightPink;
   }
 </style>
 
