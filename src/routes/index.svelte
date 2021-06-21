@@ -111,6 +111,7 @@
 
   #chats .actor {
     font-weight: bold;
+    filter: brightness(80%);
   }
   #chats .actor.group1  {
     color: MediumAquamarine;
@@ -123,7 +124,16 @@
   }
 
   #chats img.chat {
-    padding: 0;
+    padding: 1.5px;
+  }
+  #chats img.chat.group1  {
+    border-color: MediumAquamarine;
+  }
+  #chats img.chat.group2 {
+    border-color: plum;
+  }
+  #chats img.chat.group3 {
+    border-color: LightPink;
   }
 
   #chats .year {
@@ -287,7 +297,7 @@
         {/if}
       </Saos>
       <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
-        <img class="chat {event_type == 1 ? 'left' : 'right'}" src="images/event_{`${event_no}`.padStart(2, "0")}.png" alt="event" />
+        <img class="chat group{event_persons} {event_type == 1 ? 'left' : 'right'}" src="images/event_{`${event_no}`.padStart(2, "0")}.png" alt="event" />
       </Saos>
       {#each paragraphs as paragraph}
         <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
