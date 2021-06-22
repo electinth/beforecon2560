@@ -292,7 +292,7 @@
         {/if}
       </Saos>
       <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
-        <img class="chat group{event_persons} {event_type == 1 ? 'left' : 'right'}" src="images/event_{`${event_no}`.padStart(2, "0")}.png" alt="event" />
+        <img class="chat group{event_persons} {event_type == 1 ? 'left' : 'right'}" src="images/event_{`${event_no}`.padStart(2, "0")}.jpg" alt="event" />
       </Saos>
       {#each paragraphs as paragraph}
         <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
