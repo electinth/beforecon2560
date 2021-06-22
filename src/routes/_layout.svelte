@@ -20,7 +20,7 @@
     text-align: center;
   }
 
-  :global(p:first-of-type:first-letter) {
+  :global(p.first:first-of-type:first-letter) {
     float: left;
     font-size: 3em;
     font-family: Kondolar Thai, serif;
