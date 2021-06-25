@@ -11,7 +11,10 @@
   import Saos from "saos"
 
   let w
+  const left_or_right = (type) => type == 1 ? 'left' : 'right'
+
   const anim_text = "cubic-bezier(0.250, 0.460, 0.450, 0.940) both"
+  const anim_slide = (type) => `scale-in-b${left_or_right(type).charAt(0)} 0.5s ${anim_text}`
   
   import timeline_data from "data/timeline.csv"
 
@@ -106,7 +109,8 @@
 
   #chats .actor {
     font-weight: bold;
-    filter: brightness(80%);
+    filter: brightness(85%);
+    display: inline-block;
   }
   #chats .actor.group1  {
     color: var(--color1);
@@ -119,9 +123,10 @@
   }
 
   #chats img.chat {
-    padding: 1.5px;
+    padding: 0;
+    max-width: 250px;
   }
-  #chats img.chat.group1  {
+  /* #chats img.chat.group1  {
     border-color: var(--color1);
   }
   #chats img.chat.group2 {
@@ -129,18 +134,25 @@
   }
   #chats img.chat.group3 {
     border-color: var(--color3);
-  }
+  } */
 
-  #chats .year {
+  #chats .year-container {
     width: 100%;
     text-align: center;
-    font-family: Kondolar Thai, serif;
+    margin: 0 auto;
+  }
+  #chats .year {
+    background-color: lightgray;
+    border-radius: 1em;
+    display: inline-block;
+    padding: 0.5em 1em;
   }
   #chats .year.hidden {
     display: none;
   }
   #chats .date {
     display: inline-block;
+    opacity: 0.3;
   }
   #chats .date.left {
     margin-left: 0.5em;
@@ -274,29 +286,31 @@
   // 3 = ภาคประชาชน (กลุ่มนักวิชาการ นักศึกษา ประชาชน และ NGO)
   -->
 
-  {#each timeline_data as { event_no, event_actor, event_name, date, event_type, event_persons, cause, show_year, paragraphs }}
+  {#each timeline_data as { event_no, event_actor, event_name, date, event_type, event_persons, cause, icon_txt,icon_link, show_year, paragraphs }}
     <Saos animation="fade-in 1.2s {anim_text}" once={true}>
-      <div class="year {show_year ? '' : 'hidden'}">{'พ.ศ. ' + (year_num(date) + 543)}</div>
+      <div class="year-container">
+        <div class="year {show_year ? '' : 'hidden'}">{'พ.ศ. ' + (year_num(date) + 543)}</div>
+      </div>
     </Saos>
-    <div class="chat-container-{event_type == 1 ? 'left' : 'right'}">
-      <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
-        <div class="actor group{event_persons} {event_type == 1 ? 'left' : 'right'}">{event_actor}</div>
+    <div class="chat-container-{left_or_right(event_type)}">
+      <Saos animation={anim_slide(event_type)} once={true}>
+        <div class="actor group{event_persons} {left_or_right(event_type)}">{event_actor}</div>
       </Saos>
-      <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
+      <Saos animation={anim_slide(event_type)} once={true}>
+        <img class="chat group{event_persons} {left_or_right(event_type)}" src="images/event_{`${event_no}`.padStart(2, "0")}.jpg" alt="event" />
+      </Saos>
+      <Saos animation={anim_slide(event_type)} once={true}>
         {#if event_type == 2 }
           <div class="date right">{format_date(date)}</div>
         {/if}
-        <div class="chat group{event_persons} {event_type == 1 ? 'left' : 'right'}">{event_name}</div>
+        <div class="chat group{event_persons} {left_or_right(event_type)}">{event_name}</div>
         {#if event_type == 1 }
           <div class="date left">{format_date(date)}</div>
         {/if}
       </Saos>
-      <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
-        <img class="chat group{event_persons} {event_type == 1 ? 'left' : 'right'}" src="images/event_{`${event_no}`.padStart(2, "0")}.jpg" alt="event" />
-      </Saos>
       {#each paragraphs as paragraph}
-        <Saos animation="scale-in-b{event_type == 1 ? 'l' : 'r'} 0.5s {anim_text}" once={true}>
-          <div class="chat cause group{event_persons} {event_type == 1 ? 'left' : 'right'}">
+        <Saos animation={anim_slide(event_type)} once={true}>
+          <div class="chat cause group{event_persons} {left_or_right(event_type)}">
             {#if paragraph.match(url_regex) }
               <a href={paragraph}>{paragraph.length > w/12 ? (paragraph.substring(0, w/12) + '…') : paragraph}</a>
             {:else}

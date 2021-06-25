@@ -36,9 +36,9 @@
   }
 
   :root {
-    --color1: MediumAquamarine;
-    --color2: plum;
-    --color3: LightPink;
+    --color1: #C3F69D;
+    --color2: #F1C9FF;
+    --color3: #9FDDFF;
   }
 </style>
 
