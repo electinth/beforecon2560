@@ -36,6 +36,7 @@
   }
 
   :root {
+    --color0: gainsboro;
     --color1: #C3F69D;
     --color2: #F1C9FF;
     --color3: #9FDDFF;

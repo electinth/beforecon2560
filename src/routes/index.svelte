@@ -4,7 +4,7 @@
   const metadata = {
     title: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
     description: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
-    image: 'images/pie.jpg',
+    image: 'images/og.jpg',
     url:'https://elect.in.th/referendum/'
   }
 
@@ -56,17 +56,40 @@
 </script>
 
 <style>
-  #chats .chat-container-left {
+  .legend {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  .legend.alignment {
+    justify-content: space-between;
+    color: dimgray;
+  }
+  .legend.color {
+    justify-content: space-evenly;
+    margin-top: 1em;
+    margin-bottom: 2em;
+  }
+  .legend .ball {
+    margin-right: 0.4em;
+    padding: 0;
+    border-radius: 0.75em;
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  .chat-container-left {
     margin-top: 1em;
     margin-bottom: 1em;
   }
-  #chats .chat-container-right {
+  .chat-container-right {
     margin-top: 1em;
     margin-bottom: 1em;
     text-align: right;
   }
 
-  #chats .chat {
+  .chat {
     border-radius: 1em;
     display: inline-block;
     max-width: 75%;
@@ -75,89 +98,99 @@
     margin-bottom: 0.2em;
     box-sizing: border-box;
   }
-  #chats .chat.left  {
+  .chat.left  {
     border-top-left-radius: 2px;
   }
-  #chats .chat.right {
+  .chat.right {
     border-top-right-radius: 2px;
   }
 
-  #chats .chat.group1  {
+  .chat.group0 {
+    background-color: var(--color0);
+  }
+  .chat.group1 {
     background-color: var(--color1);
   }
-  #chats .chat.group2 {
+  .chat.group2 {
     background-color: var(--color2);
   }
-  #chats .chat.group3 {
+  .chat.group3 {
     background-color: var(--color3);
   }
 
-  #chats .chat.cause {
+  .chat.cause {
     background-color: transparent;
     border-width: 1.5px;
     border-style: solid;
   }
-  #chats .chat.cause.group1  {
+  .chat.cause.group0 {
+    border-color: var(--color0);
+  }
+  .chat.cause.group1 {
     border-color: var(--color1);
   }
-  #chats .chat.cause.group2 {
+  .chat.cause.group2 {
     border-color: var(--color2);
   }
-  #chats .chat.cause.group3 {
+  .chat.cause.group3 {
     border-color: var(--color3);
   }
 
-  #chats .actor {
+  .actor {
     font-weight: bold;
     filter: brightness(85%);
     display: inline-block;
   }
-  #chats .actor.group1  {
+  .actor.group0 {
+    color: var(--color0);
+  }
+  .actor.group1 {
     color: var(--color1);
   }
-  #chats .actor.group2 {
+  .actor.group2 {
     color: var(--color2);
   }
-  #chats .actor.group3 {
+  .actor.group3 {
     color: var(--color3);
   }
 
-  #chats img.chat {
+  img.chat {
     padding: 0;
     max-width: 250px;
   }
-  /* #chats img.chat.group1  {
+  /* img.chat.group1  {
     border-color: var(--color1);
   }
-  #chats img.chat.group2 {
+  img.chat.group2 {
     border-color: var(--color2);
   }
-  #chats img.chat.group3 {
+  img.chat.group3 {
     border-color: var(--color3);
   } */
 
-  #chats .year-container {
+  .year-container {
     width: 100%;
     text-align: center;
     margin: 0 auto;
   }
-  #chats .year {
-    background-color: lightgray;
+  .year {
+    background-color: gainsboro;
+    color: dimgray;
     border-radius: 1em;
     display: inline-block;
     padding: 0.5em 1em;
   }
-  #chats .year.hidden {
+  .year.hidden {
     display: none;
   }
-  #chats .date {
+  .date {
     display: inline-block;
-    opacity: 0.3;
+    color: darkgray;
   }
-  #chats .date.left {
+  .date.left {
     margin-left: 0.5em;
   }
-  #chats .date.right {
+  .date.right {
     margin-right: 0.5em;
   }
 
@@ -263,15 +296,11 @@
 <h1>จำลองไลน์กลุ่มรัฐธรรมนูญ 2560</h1>
 
 <p class="first" bind:clientWidth={w}>
-  รัฐธรรมนูญแห่งราชอาณาจักรไทย พุทธศักราช 2560 ถูกวิพากษ์วิจารณ์อย่างมากในหลายประเด็น ไม่ว่าจะเป็นที่มาของผู้ร่างรัฐธรรมนูญที่ไม่เป็นประชาธิปไตย การสร้างบทบัญญัติที่วางกระบวนการสืบทอดอำนาจให้กับ คสช. คณะรัฐประหารซึ่งยึดอำนาจการปกครองจากรัฐบาลที่มาจากการเลือกตั้ง การปิดกั้นการแสดงความคิดเห็นเกี่ยวกับการทำประชามติร่างรัฐธรรมนูญ รวมถึงการกำหนดประเด็นคำถามในการทำประชามติที่ไม่ชัดเจน ฯลฯ
+  มีเหตุการณ์มากมายที่เกี่ยวข้องกับการเกิดขึ้นของรัฐธรรมนูญ 2560 ซึ่งได้ชื่อว่าเป็นรัฐธรรมนูญซึ่งวางเส้นทางการสืบทอดอำนาจให้กับ คสช. อย่างเป็นระบบ ทั้งจากฝั่งสนับสนุนให้เกิดรัฐธรรมนูญ 2560 และฝั่งที่ต่อต้านไม่ให้เกิดรัฐธรรมนูญ 2560 โดยแต่ละฝั่งก็มีบุคคล กลุ่มบุคคล และองค์กรที่เข้ามาเกี่ยวข้องจำนวนมาก ทั้งที่มาจากภาครัฐ ภาคการเมือง และภาคประชาชน
 </p>
 
 <p>
-  ก่อนที่รัฐธรรมนูญฉบับนี้จะกำเนิดขึ้นมาได้ ก็มีเหตุการณ์ต่าง ๆ เกิดขึ้นมากมาย ซึ่งมีความเกี่ยวข้องเชื่อมโยงกัน ทั้งจากฝั่งเหตุการณ์ที่สร้างผลสนับสนุน คสช. ในการสร้างรัฐธรรมนูญเพื่อการสืบทอดอำนาจ และฝั่งเหตุการณ์ที่สร้างผลต่อต้าน คสช. ไม่ให้สามารถใช้รัฐธรรมนูญเพื่อสืบทอดอำนาจต่อได้ ซึ่งเหตุการณ์ทั้งสองฝั่งล้วนมีบุคคล กลุ่มบุคคล และองค์กรที่เกี่ยวข้องอย่างหลากหลาย ทั้งจากภาครัฐ ภาคการเมือง และภาคประชาชน
-</p>
-
-<p>
-  ELECT จะพาทุกคนไปดู Timeline ตั้งแต่เกิดการทำรัฐประหารเมื่อ พ.ศ. 2557 จนถึงการประกาศใช้รัฐธรรมนูญฉบับปัจจุบันเมื่อ พ.ศ. 2560 ผ่านตัวอย่าง “70 เหตุการณ์” เพื่อแสดงให้เห็นว่าก่อนที่จะเกิดเป็นรัฐธรรมนูญ 2560 มีเหตุการณ์อะไรเกิดขึ้นบ้าง รวมถึงผู้ที่มีความเกี่ยวข้องในเรื่องนี้ ทั้งจากฝ่ายสนับสนุนและฝ่ายไม่สนับสนุน คสช. เป็นใคร และทำอะไรที่ส่งผลต่อการเกิดรัฐธรรมนูญ 2560 อันเป็นเครื่องมือสืบทอดอำนาจของ คสช. บ้าง
+  ร่วมกันทำความรู้จักเหตุการณ์และผู้ที่เกี่ยวข้องกับรัฐธรรมนูญ 2560 ได้ที่นี่
 </p>
 
 <div id="chats">
@@ -285,6 +314,25 @@
   // 2 = ภาคการเมือง (พรรคการเมือง นักการเมือง และกลุ่มการเมือง)
   // 3 = ภาคประชาชน (กลุ่มนักวิชาการ นักศึกษา ประชาชน และ NGO)
   -->
+  
+  <div class="legend alignment">
+    <div class="chat group0 {left_or_right(1)}">เกิดผลสนับสนุน คสช.</div>
+    <div class="chat group0 {left_or_right(2)}">เกิดผลต่อต้าน คสช.</div>
+  </div>
+  <div class="legend color">
+    <div class="legend">
+      <div class="chat group1 ball"></div>
+      <div class="actor group1">ภาครัฐ</div>
+    </div>
+    <div class="legend">
+      <div class="chat group2 ball"></div>
+      <div class="actor group2">ภาคการเมือง</div>
+    </div>
+    <div class="legend">
+      <div class="chat group3 ball"></div>
+      <div class="actor group3">ภาคประชาชน</div>
+    </div>
+  </div>
 
   {#each timeline_data as { event_no, event_actor, event_name, date, event_type, event_persons, cause, icon_txt,icon_link, show_year, paragraphs }}
     <Saos animation="fade-in 1.2s {anim_text}" once={true}>
