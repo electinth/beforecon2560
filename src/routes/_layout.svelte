@@ -43,9 +43,10 @@
   }
 </style>
 
-<elect-staging-banner></elect-staging-banner>
+<!-- <elect-staging-banner></elect-staging-banner> -->
 
-<elect-navbar title-text="ก่อนจะเป็นรัฐธรรมนูญ 2560"></elect-navbar>
+<elect-navbar dark="True" showSlotInNewRowOnMobile="True">
+</elect-navbar>
 
 <Nav {segment}/>
 
