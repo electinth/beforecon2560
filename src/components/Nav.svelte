@@ -13,7 +13,7 @@
 		margin: 0;
 		padding: 0;
 	}
-
+  
 	/* clearfix */
 	ul::after {
 		content: '';
@@ -51,7 +51,7 @@
 <nav>
 	<ul>
 		<li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">ลำดับเหตุการณ์</a></li>
-    <li><a aria-current="{segment === 'article' ? 'page' : undefined}" href="article">บทความสรุป</a></li>
+    <li><a aria-current="{segment === 'article' ? 'page' : undefined}" href="article">ดูสมาชิก (13)</a></li>
 		<li><a aria-current="{segment === 'about' ? 'page' : undefined}" href="about">เกี่ยวกับโครงการ</a></li>
 
 		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
