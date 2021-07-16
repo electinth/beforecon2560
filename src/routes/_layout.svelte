@@ -15,12 +15,16 @@
 	}
   
   :global(h1) {
-    font-size: 3em;
+    font-size: 2em;
     font-family: Kondolar Thai, serif;
     text-align: center;
   }
+  :global(h2) {
+    font-size: 1.5em;
+    font-family: Kondolar Thai, serif;
+  }
 
-  :global(p.first:first-of-type:first-letter) {
+  /* :global(p.first:first-of-type:first-letter) {
     float: left;
     font-size: 3em;
     font-family: Kondolar Thai, serif;
@@ -28,7 +32,7 @@
     margin-bottom: -0.3em;
     padding-left: 0.05em;
     padding-right: 0.15em;
-  }
+  } */
 
   .sharer {
     width: 250px;

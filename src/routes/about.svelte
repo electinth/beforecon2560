@@ -13,11 +13,6 @@
 </script>
 
 <style>
-  h2 {
-    font-size: 2em;
-    font-family: Kondolar Thai, serif;
-  }
-
   .table {
     margin: 1em 0;
   }
