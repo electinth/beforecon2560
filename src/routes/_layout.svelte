@@ -122,7 +122,7 @@
 {/if}
 
 <main>
-	<slot></slot>
+  <slot></slot>
 </main>
 
 <div class="sharer">

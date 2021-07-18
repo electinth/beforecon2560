@@ -8,9 +8,12 @@
     url:'https://elect.in.th/referendum/'
   }
 
-  import Saos from "saos"
+  import { fade, fly } from 'svelte/transition'
 
   let w
+
+  import Saos from "saos"
+
   const left_or_right = (type) => type == 1 ? 'left' : 'right'
 
   const anim_text = "cubic-bezier(0.250, 0.460, 0.450, 0.940) both"
@@ -337,7 +340,7 @@
 
 <!-- <h1>จำลองไลน์กลุ่มรัฐธรรมนูญ 2560</h1> -->
 
-<div id="chats" bind:clientWidth={w}>
+<div id="chats" bind:clientWidth={w} in:fly="{{ x: -w, duration: 1000, delay: 500 }}" out:fly="{{ x: -w, duration: 500 }}">
   <!--
   // ประเภทของเหตุการณ์
   // 1 = เกิดผลสนับสนุน คสช.

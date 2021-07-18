@@ -1,5 +1,5 @@
 <script>
-  import Meta from "../components/Meta.svelte";
+  import Meta from "../components/Meta.svelte"
 
   const metadata = {
     title: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
@@ -7,6 +7,10 @@
     image: 'images/og.jpg',
     url:'https://elect.in.th/referendum/'
   }
+
+  import { fade, fly } from 'svelte/transition'
+
+  let w
 
   import member_data from "data/member.csv"
 
@@ -79,46 +83,50 @@
 
 <!-- <h1>สมาชิก</h1> -->
 
-<p class="first">
-  จากตัวอย่างเหตุการณ์ทางการเมืองที่เกิดขึ้นในช่วง พ.ศ. 2557 ถึง พ.ศ. 2560 สะท้อนให้เห็นว่าจากระยะเวลาเกือบ 3 ปี มีความเคลื่อนไหวที่เกี่ยวข้องกับรัฐธรรมนูญแห่งราชอาณาจักรไทย พุทธศักราช 2560 เกิดขึ้นมากมาย โดยแบ่งตัวอย่างผู้ที่เกี่ยวข้องกับการเกิดขึ้นของรัฐธรรมนูญ 2560 ได้ 2 ประเภทหลัก ดังนี้
-</p>
+<div bind:clientWidth={w} in:fly="{{ x: w, duration: 1000, delay: 500 }}" out:fly="{{ x: w, duration: 500 }}">
 
-<div class="columns">
-  <div class="column">
-    <h2 class="left">
-      สนับสนุน ({member_for.length})
-    </h2>
+  <p class="first">
+    จากตัวอย่างเหตุการณ์ทางการเมืองที่เกิดขึ้นในช่วง พ.ศ. 2557 ถึง พ.ศ. 2560 สะท้อนให้เห็นว่าจากระยะเวลาเกือบ 3 ปี มีความเคลื่อนไหวที่เกี่ยวข้องกับรัฐธรรมนูญแห่งราชอาณาจักรไทย พุทธศักราช 2560 เกิดขึ้นมากมาย โดยแบ่งตัวอย่างผู้ที่เกี่ยวข้องกับการเกิดขึ้นของรัฐธรรมนูญ 2560 ได้ 2 ประเภทหลัก ดังนี้
+  </p>
 
-    <ul>
-      {#each member_for as { person_no, person_name, person_type, description }}
-        <li>
-          <img src="images/person_{`${person_no}`.padStart(2, "0")}.jpg" alt="icon" />
-          <div>
-            <div class="name">{person_name}</div>
-            <div class="desc">{description}</div>
-          </div>
-        </li>
-      {/each}
-    </ul>
-  </div>
-
-  <div class="column">
-    <div style="text-align: right;">
-      <h2 class="right">
-        ต่อต้าน ({member_against.length})
+  <div class="columns">
+    <div class="column">
+      <h2 class="left">
+        สนับสนุน ({member_for.length})
       </h2>
+
+      <ul>
+        {#each member_for as { person_no, person_name, person_type, description }}
+          <li>
+            <img src="images/person_{`${person_no}`.padStart(2, "0")}.jpg" alt="icon" />
+            <div>
+              <div class="name">{person_name}</div>
+              <div class="desc">{description}</div>
+            </div>
+          </li>
+        {/each}
+      </ul>
     </div>
 
-    <ul>
-      {#each member_against as { person_no, person_name, person_type, description }}
-        <li>
-          <img src="images/person_{`${person_no}`.padStart(2, "0")}.jpg" alt="icon" />
-          <div>
-            <div class="name">{person_name}</div>
-            <div class="desc">{description}</div>
-          </div>
-        </li>
-      {/each}
-    </ul>
+    <div class="column">
+      <div style="text-align: right;">
+        <h2 class="right">
+          ต่อต้าน ({member_against.length})
+        </h2>
+      </div>
+
+      <ul>
+        {#each member_against as { person_no, person_name, person_type, description }}
+          <li>
+            <img src="images/person_{`${person_no}`.padStart(2, "0")}.jpg" alt="icon" />
+            <div>
+              <div class="name">{person_name}</div>
+              <div class="desc">{description}</div>
+            </div>
+          </li>
+        {/each}
+      </ul>
+    </div>
   </div>
+
 </div>
