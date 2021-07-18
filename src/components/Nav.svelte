@@ -9,30 +9,56 @@
 		padding: 0 1em;
 	}
 
-	.ul {
-		margin: 0;
+	.links {
+		margin: 0 auto;
 		padding: 0;
     text-align: center;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 56em;
+
     overflow-x: scroll;
     white-space: nowrap;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
   }
-  .ul::-webkit-scrollbar { /* WebKit */
+  .links::-webkit-scrollbar { /* WebKit */
     width: 0;
     height: 0;
   }
 
-	.li {
+	.link {
 		display: inline-block;
     white-space: normal;
 	}
-
-	[aria-current] {
+  a {
+    cursor: default;
+    text-decoration: none;
+		padding: 1em 0.5em;
+		display: block;
+    font-size: 0.8em;
+    opacity: 0.5;
+  }
+  .link:hover :not([aria-current]) {
+    cursor: pointer;
+		text-decoration: underline;
+  }
+  [aria-current] {
+		font-size: 1em;
+    opacity: 1;
+	}
+  .link:nth-of-type(1) :not([aria-current])::before {
+    content: '< ';
+  }
+  .link:nth-of-type(2) :not([aria-current])::after {
+    content: ' >';
+  }
+	/* [aria-current] {
 		position: relative;
 		display: inline-block;
 	}
-
 	[aria-current]::after {
 		position: absolute;
 		content: '';
@@ -41,19 +67,12 @@
 		background-color: black;
 		display: block;
 		bottom: -1px;
-	}
-
-	a {
-		text-decoration: none;
-		padding: 1em 0.5em;
-		display: block;
-	}
+	} */
 </style>
 
 <nav>
-	<div class="ul">
-		<div class="li"><a rel="prefetch" aria-current="{segment === undefined ? 'page' : undefined}" href=".">ก่อนจะเป็นรัฐธรรมนูญ 2560</a></div>
-    <div class="li"><a rel="prefetch" aria-current="{segment === 'article' ? 'page' : undefined}" href="article">ดูสมาชิก (13)</a></div>
-		<div class="li"><a rel="prefetch" aria-current="{segment === 'about' ? 'page' : undefined}" href="about">เกี่ยวกับโครงการ</a></div>
+	<div class="links">
+		<div class="link"><a rel="prefetch" aria-current="{segment === undefined ? 'page' : undefined}" href=".">ก่อนจะเป็นรัฐธรรมนูญ 2560</a></div>
+    <div class="link"><a rel="prefetch" aria-current="{segment === 'member' ? 'page' : undefined}" href="member">ดูสมาชิก (13)</a></div>
 	</div>
 </nav>

@@ -73,7 +73,9 @@
   .legend.color {
     justify-content: space-evenly;
     margin-top: 1em;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    /* border-bottom: 1px solid rgba(0,0,0,0.1); */
   }
   .legend .ball {
     margin-right: 0.4em;
@@ -124,7 +126,7 @@
 
   .chat .button {
     margin: 1em -1em -0.5em -1em;
-    border-top: 1px solid rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(0,0,0,0.2);
     padding: 0.75em 1em;
     opacity: 0.5;
     font-size: 0.8em;
@@ -132,6 +134,9 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     cursor: pointer;
+  }
+  .chat .button:hover div:nth-child(1) {
+    text-decoration: underline;
   }
 
   .chat.cause {
@@ -226,6 +231,9 @@
     margin-bottom: 0;
     opacity: 0.5;
     font-size: 0.8em;
+  }
+  .link:hover p.icon-click-text {
+    text-decoration: underline;
   }
 
   /* ----------------------------------------------

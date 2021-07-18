@@ -8,7 +8,7 @@
     url:'https://elect.in.th/referendum/'
   }
 
-  import member_data from "data/article.csv"
+  import member_data from "data/member.csv"
 
   let member_for = member_data.filter(d => d.person_type == 1)
   let member_against = member_data.filter(d => d.person_type == 2)
@@ -67,6 +67,9 @@
   .first, .desc {
     opacity: 0.65;
   }
+  .first {
+    margin-top: 0;
+  }
 </style>
 
 <svelte:head>
@@ -82,7 +85,7 @@
 
 <div class="columns">
   <div class="column">
-    <h2>
+    <h2 class="left">
       สนับสนุน ({member_for.length})
     </h2>
 
@@ -100,9 +103,11 @@
   </div>
 
   <div class="column">
-    <h2>
-      ต่อต้าน ({member_against.length})
-    </h2>
+    <div style="text-align: right;">
+      <h2 class="right">
+        ต่อต้าน ({member_against.length})
+      </h2>
+    </div>
 
     <ul>
       {#each member_against as { person_no, person_name, person_type, description }}
