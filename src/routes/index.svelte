@@ -39,6 +39,7 @@
     timeline_data[i].show_year = (current_year !== year)
     current_year = year
 
+    timeline_data[i].is_more_info_shown = false
     let cause = timeline_data[i].cause.split("\n\n")
     timeline_data[i].paragraphs = []
     for (let j = 0; j < cause.length; j++) {
@@ -53,13 +54,16 @@
       }
     }
   }
+
+  let toggle_more_info = (idx) => {
+    timeline_data[idx].is_more_info_shown = !timeline_data[idx].is_more_info_shown
+  }
 </script>
 
 <style>
   .legend {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
     align-items: center;
   }
   .legend.alignment {
@@ -116,6 +120,18 @@
   }
   .chat.group3 {
     background-color: var(--color3);
+  }
+
+  .chat .button {
+    margin: 1em -1em -0.5em -1em;
+    border-top: 1px solid rgba(0,0,0,0.5);
+    padding: 0.75em 1em;
+    opacity: 0.5;
+    font-size: 0.8em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    cursor: pointer;
   }
 
   .chat.cause {
@@ -344,53 +360,74 @@
     </div>
   </div>
 
-  {#each timeline_data as { event_no, event_actor, event_name, date, event_type, event_persons, cause, icon_txt, icon_link, show_year, paragraphs }}
+  {#each timeline_data as { event_no, event_actor, event_name, date, event_type, event_persons, cause, icon_txt, icon_link, show_year, is_more_info_shown, paragraphs }, idx}
+    <!-- year -->
     <Saos animation="fade-in 1.2s {anim_text}" once={true}>
       <div class="year-container">
         <div class="year {show_year ? '' : 'hidden'}">{'พ.ศ. ' + (year_num(date) + 543)}</div>
       </div>
     </Saos>
     <div class="chat-container-{left_or_right(event_type)}">
+      <!-- member -->
       <Saos animation={anim_slide(event_type)} once={true}>
         <div class="actor group{event_persons} {left_or_right(event_type)}">{event_actor}</div>
       </Saos>
-      {#if icon_txt == undefined }
+      <!-- image -->
+      {#if icon_txt === '' }
         <Saos animation={anim_slide(event_type)} once={true}>
           <img class="chat group{event_persons} {left_or_right(event_type)}" src="images/event_{`${event_no}`.padStart(2, "0")}.jpg" alt="event" />
         </Saos>
       {/if}
+      <!-- main text with date -->
       <Saos animation={anim_slide(event_type)} once={true}>
+        <!-- date -->
         {#if event_type == 2 }
           <div class="date right">{format_date(date)}</div>
         {/if}
-        <div class="chat group{event_persons} {left_or_right(event_type)}">{event_name}</div>
+        <div class="chat group{event_persons} {left_or_right(event_type)}">
+          {event_name}
+          <div class="button" on:click={() => toggle_more_info(idx)}>
+            {#if is_more_info_shown}
+              <div>ดูน้อยลง</div>
+              <div>-</div>
+            {:else}
+              <div>ดูเพิ่มเติม</div>
+              <div>+</div>
+            {/if}
+          </div>
+        </div>
+        <!-- date -->
         {#if event_type == 1 }
           <div class="date left">{format_date(date)}</div>
         {/if}
       </Saos>
-      {#each paragraphs as paragraph}
-        <Saos animation={anim_slide(event_type)} once={true}>
-          <div class="chat cause group{event_persons} {left_or_right(event_type)}">
-            {#if paragraph.match(url_regex) }
-              <a href={paragraph}>{paragraph.length > w/13 ? (paragraph.substring(0, w/13) + '…') : paragraph}</a>
-            {:else}
-              {paragraph}
-            {/if}
-          </div>
-        </Saos>
-      {/each}
-      {#if icon_txt }
-        <Saos animation={anim_slide(event_type)} once={true}>
-          <a href={icon_link}>
-            <div class="chat cause group{event_persons} {left_or_right(event_type)} link">
-              <img src="images/pdf.jpg" alt="icon" />
-              <div>
-                {icon_txt}
-                <p class="icon-click-text">คลิกเพื่ออ่านเพิ่มเติม</p>
-              </div>
+      {#if is_more_info_shown}
+        <!-- additional information -->
+        {#each paragraphs as paragraph}
+          <Saos animation={anim_slide(event_type)} once={true}>
+            <div class="chat cause group{event_persons} {left_or_right(event_type)}">
+              {#if paragraph.match(url_regex) }
+                <a href={paragraph}>{paragraph.length > w/13 ? (paragraph.substring(0, w/13) + '…') : paragraph}</a>
+              {:else}
+                {paragraph}
+              {/if}
             </div>
-          </a>
-        </Saos>
+          </Saos>
+        {/each}
+        <!-- external link -->
+        {#if icon_txt }
+          <Saos animation={anim_slide(event_type)} once={true}>
+            <a href={icon_link}>
+              <div class="chat cause group{event_persons} {left_or_right(event_type)} link">
+                <img src="images/pdf.jpg" alt="icon" />
+                <div>
+                  {icon_txt}
+                  <p class="icon-click-text">คลิกเพื่ออ่านเพิ่มเติม</p>
+                </div>
+              </div>
+            </a>
+          </Saos>
+        {/if}
       {/if}
     </div>
   {/each}
