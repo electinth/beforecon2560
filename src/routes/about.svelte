@@ -9,7 +9,30 @@
   }
 
   let w
-  let data_link = "http://ethesisarchive.library.tu.ac.th/thesis/2017/TU_2017_5803011310_7591_6090.pdf"
+  const source_links = [
+    "http://ethesisarchive.library.tu.ac.th/thesis/2017/TU_2017_5803011310_7591_6090.pdf",
+    "http://www.ratchakitcha.soc.go.th",
+    "https://www.matichon.co.th",
+    "https://www.voicetv.co.th",
+    "https://prachatai.com/",
+    "https://thaipublica.org",
+    "https://news.thaipbs.or.th",
+    "https://www.thairath.co.th",
+    "https://mgronline.com",
+    "https://www.posttoday.com",
+    "https://www.naewna.com",
+    "https://www.komchadluek.net",
+    "https://www.sanook.com/news",
+    "https://www.ect.go.th",
+    "https://www.constitutionalcourt.or.th",
+    "https://ptp.or.th/",
+    "https://www.facebook.com/DemocratPartyTH",
+    "https://ilaw.or.th",
+    "https://www.facebook.com/thammasatsu",
+    "https://www.facebook.com/Y.Shinawatra",
+    "https://www.facebook.com/suthep.fb"
+  ]
+  const download_link = "https://docs.google.com/spreadsheets/d/1DdmWZ-Hn8pFyRESWy_cfrappUMFT5jVyd3OA6x-C_tU/edit#gid=0"
 </script>
 
 <style>
@@ -25,6 +48,21 @@
 
   .first {
     margin-top: 0;
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  .button {
+    background-color: var(--color0);
+    border-radius: 1em;
+    padding: 0.5em 0.75em;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .button:hover {
+    text-decoration: underline;
   }
 </style>
 
@@ -51,9 +89,11 @@
   ที่มาของข้อมูล
 </h2>
 
-<p>
-  <a href={data_link}>{data_link.length > w/7 ? (data_link.substring(0, w/7) + '…') : data_link}</a>
-</p>
+<ul>
+  {#each source_links as link}
+    <li><a href={link} target="_blank">{link.length > w/8 ? (link.substring(0, w/8) + '…') : link}</a></li>
+  {/each}
+</ul>
 
 <h2 class="left">
   อาสาสมัครร่วมพัฒนา
@@ -97,3 +137,8 @@
 <p>
   หากมีข้อสงสัยต้องการสอบถามเพิ่มเติม ประสงค์แจ้งเปลี่ยนแปลงหรือเพิ่มเติมข้อมูลเพื่อความถูกต้อง หรือมีข้อเสนอแนะใด ๆ สามารถติดต่อได้ที่ contact [at] elect.in.th
 </p>
+<div class="centered">
+  <a href={download_link} target="_blank">
+    <div class="button">ตารางข้อมูล</div>
+  </a>
+</div>

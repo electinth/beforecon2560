@@ -84,6 +84,9 @@
     display: inline-block;
     cursor: pointer;
   }
+  .button:hover {
+    text-decoration: underline;
+  }
 
   .link a {
     cursor: default;
