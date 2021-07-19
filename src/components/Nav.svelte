@@ -47,6 +47,7 @@
   }
   [aria-current] {
 		font-size: 1em;
+    font-weight: bold;
     opacity: 1;
 	}
   .link:nth-of-type(1) :not([aria-current])::before {

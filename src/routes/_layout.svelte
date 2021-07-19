@@ -22,7 +22,7 @@
     font-family: Kondolar Thai, serif;
     display: inline-block;
     background-color: var(--color0);
-    color: dimgray;
+    color: black;
     border-radius: 1em;
     padding: 0.5em 1em;
     margin-top: 0.2em;
