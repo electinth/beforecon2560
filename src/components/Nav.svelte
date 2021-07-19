@@ -38,7 +38,7 @@
     text-decoration: none;
 		padding: 1em 0.5em;
 		display: block;
-    font-size: 0.8em;
+    font-size: 0.9em;
     opacity: 0.5;
   }
   .link:hover :not([aria-current]) {
@@ -73,6 +73,6 @@
 <nav>
 	<div class="links">
 		<div class="link"><a rel="prefetch" aria-current="{segment === undefined ? 'page' : undefined}" href=".">ก่อนจะเป็นรัฐธรรมนูญ 2560</a></div>
-    <div class="link"><a rel="prefetch" aria-current="{segment === 'member' ? 'page' : undefined}" href="member">ดูสมาชิก (13)</a></div>
+    <div class="link"><a rel="prefetch" aria-current="{segment === 'member' ? 'page' : undefined}" href="member">ดูตัวอย่างสมาชิก (13)</a></div>
 	</div>
 </nav>

@@ -77,7 +77,7 @@
 </style>
 
 <svelte:head>
-  <title>ก่อนจะเป็นรัฐธรรมนูญ 2560 - สมาชิก</title>
+  <title>ก่อนจะเป็นรัฐธรรมนูญ 2560 - ตัวอย่างสมาชิก</title>
   <Meta {metadata} />
 </svelte:head>
 

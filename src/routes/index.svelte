@@ -132,7 +132,7 @@
     border-top: 1px solid rgba(0,0,0,0.2);
     padding: 0.75em 1em;
     opacity: 0.5;
-    font-size: 0.8em;
+    font-size: 0.9em;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -233,7 +233,7 @@
   .link p.icon-click-text {
     margin-bottom: 0;
     opacity: 0.5;
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
   .link:hover p.icon-click-text {
     text-decoration: underline;
@@ -418,7 +418,7 @@
           <Saos animation={anim_slide(event_type)} once={true}>
             <div class="chat cause group{event_persons} {left_or_right(event_type)}">
               {#if paragraph.match(url_regex) }
-                <a href={paragraph}>{paragraph.length > w/13 ? (paragraph.substring(0, w/13) + '…') : paragraph}</a>
+                <a href={paragraph} target="_blank">{paragraph.length > w/13 ? (paragraph.substring(0, w/13) + '…') : paragraph}</a>
               {:else}
                 {paragraph}
               {/if}
@@ -428,7 +428,7 @@
         <!-- external link -->
         {#if icon_txt }
           <Saos animation={anim_slide(event_type)} once={true}>
-            <a href={icon_link}>
+            <a href={icon_link} target="_blank">
               <div class="chat cause group{event_persons} {left_or_right(event_type)} link">
                 <img src="images/pdf.jpg" alt="icon" />
                 <div>
