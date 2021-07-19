@@ -64,21 +64,25 @@
 </script>
 
 <style>
+  .legends {
+    margin: -32px 0 2em 0;
+    padding: 2em 0;
+    /* background-color: WhiteSmoke; */
+    border-bottom: 3px solid #333;
+  }
   .legend {
+    margin: 0 auto;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    max-width: 400px;
+    justify-content: space-between;
   }
   .legend.alignment {
-    justify-content: space-between;
-    color: dimgray;
+    color: #333;
   }
   .legend.color {
-    justify-content: space-evenly;
     margin-top: 1em;
-    margin-bottom: 1em;
-    padding-bottom: 1em;
-    /* border-bottom: 1px solid rgba(0,0,0,0.1); */
   }
   .legend .ball {
     margin-right: 0.4em;
@@ -114,9 +118,6 @@
     border-top-right-radius: 2px;
   }
 
-  .chat.group0 {
-    background-color: var(--color0);
-  }
   .chat.group1 {
     background-color: var(--color1);
   }
@@ -148,7 +149,7 @@
     border-style: solid;
   }
   .chat.cause.group0 {
-    border-color: var(--color0);
+    border-color: #333;
   }
   .chat.cause.group1 {
     border-color: var(--color1);
@@ -164,9 +165,6 @@
     font-weight: bold;
     filter: brightness(85%);
     display: inline-block;
-  }
-  .actor.group0 {
-    color: var(--color0);
   }
   .actor.group1 {
     color: var(--color1);
@@ -352,22 +350,15 @@
   // 3 = ภาคประชาชน (กลุ่มนักวิชาการ นักศึกษา ประชาชน และ NGO)
   -->
   
-  <div class="legend alignment">
-    <div class="chat group0 {left_or_right(1)}">เกิดผลสนับสนุน คสช.</div>
-    <div class="chat group0 {left_or_right(2)}">เกิดผลต่อต้าน คสช.</div>
-  </div>
-  <div class="legend color">
-    <div class="legend">
-      <div class="chat group1 ball"></div>
-      <div class="actor group1">ภาครัฐ</div>
+  <div class="legends">
+    <div class="legend alignment">
+      <div class="chat cause group0 {left_or_right(1)}">สนับสนุน คสช.</div>
+      <div class="chat cause group0 {left_or_right(2)}">ต่อต้าน คสช.</div>
     </div>
-    <div class="legend">
-      <div class="chat group2 ball"></div>
-      <div class="actor group2">ภาคการเมือง</div>
-    </div>
-    <div class="legend">
-      <div class="chat group3 ball"></div>
-      <div class="actor group3">ภาคประชาชน</div>
+    <div class="legend color">
+      <div class="chat group1">ภาครัฐ</div>
+      <div class="chat group2">ภาคการเมือง</div>
+      <div class="chat group3">ภาคประชาชน</div>
     </div>
   </div>
 

@@ -39,7 +39,7 @@
     .column:nth-of-type(2) {
       margin-top: 1em;
       padding-top: 1em;
-      border-top: 3px solid black;
+      border-top: 3px solid #333;
     }
     .name, .desc {
       width: 100%;
