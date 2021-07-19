@@ -132,12 +132,14 @@
   <Nav {segment}/>
 {/if}
 
-<main>
-  <slot></slot>
-</main>
+{#if !is_popup_shown}
+  <main>
+    <slot></slot>
+  </main>
 
-<div class="sharer">
-  <elect-sharer></elect-sharer>
-</div>
+  <div class="sharer">
+    <elect-sharer></elect-sharer>
+  </div>
 
-<elect-footer></elect-footer>
+  <elect-footer></elect-footer>
+{/if}
