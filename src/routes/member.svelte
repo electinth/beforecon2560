@@ -5,7 +5,7 @@
     title: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
     description: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
     image: 'images/og.jpg',
-    url:'https://elect.in.th/referendum/'
+    url:'https://elect.in.th/beforecon2560/'
   }
 
   import { fade, fly } from 'svelte/transition'

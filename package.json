@@ -7,7 +7,7 @@
     "build": "sapper build --legacy",
     "export": "sapper export --legacy",
     "start": "node __sapper__/build",
-    "github-pages": "sapper export --basepath referendum --legacy &&  gh-pages -d __sapper__/export/referendum"
+    "github-pages": "sapper export --basepath beforecon2560 --legacy &&  gh-pages -d __sapper__/export/beforecon2560"
   },
   "dependencies": {
     "@electinth/common": "^2.0.0",

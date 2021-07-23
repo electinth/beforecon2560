@@ -8,7 +8,7 @@ const dev = NODE_ENV === 'development';
 
 polka() // You can also use Express
 	.use(
-    'referendum',
+    'beforecon2560',
 		compression({ threshold: 0 }),
 		sirv('static', { dev }),
 		sapper.middleware()

@@ -5,7 +5,7 @@
     title: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
     description: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
     image: 'images/og.jpg',
-    url:'https://elect.in.th/referendum/'
+    url:'https://elect.in.th/beforecon2560/'
   }
 
   import { fade, fly } from 'svelte/transition'
@@ -65,7 +65,7 @@
 
 <style>
   .legends {
-    margin: -32px 0 2em 0;
+    margin: -32px 0 1em 0;
     padding: 2em 0;
     /* background-color: WhiteSmoke; */
     border-bottom: 3px solid #333;
@@ -94,11 +94,11 @@
 
   .chat-container-left {
     margin-top: 1em;
-    margin-bottom: 1em;
+    /* margin-bottom: 1em; */
   }
   .chat-container-right {
     margin-top: 1em;
-    margin-bottom: 1em;
+    /* margin-bottom: 1em; */
     text-align: right;
   }
 
@@ -194,6 +194,7 @@
     width: 100%;
     text-align: center;
     margin: 0 auto;
+    padding-top: 2em;
   }
   .year {
     background-color: gainsboro;
@@ -352,8 +353,8 @@
   
   <div class="legends">
     <div class="legend alignment">
-      <div class="chat cause group0 {left_or_right(1)}">สนับสนุน คสช.</div>
-      <div class="chat cause group0 {left_or_right(2)}">ต่อต้าน คสช.</div>
+      <div class="chat cause group0 {left_or_right(1)}">สนับสนุน</div>
+      <div class="chat cause group0 {left_or_right(2)}">ต่อต้าน</div>
     </div>
     <div class="legend color">
       <div class="chat group1">ภาครัฐ</div>
