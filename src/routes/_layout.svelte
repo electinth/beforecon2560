@@ -67,6 +67,11 @@
 		box-sizing: border-box;
 	}
 
+  img.logo {
+    width: 45px;
+    height: 45px;
+    margin: 1em auto 0;
+  }
   p.subtitle {
     opacity: 0.5;
     font-size: 0.9em;
@@ -78,9 +83,11 @@
     margin-top: 0.2em;
   }
   .button {
-    background-color: var(--color1);
+    color: white;
+    background-color: rgba(60, 231, 0, 1);
     border-radius: 5px;
     padding: 0.5em 0.75em;
+    margin: 0.5em auto 1em;
     display: inline-block;
     cursor: pointer;
   }
@@ -108,6 +115,7 @@
 <!-- <elect-staging-banner></elect-staging-banner> -->
 
 <Popup {is_popup_shown} on:click={toggle_popup}>
+  <img class="logo" src="images/line_logo.png" alt="logo" />
   <p class="subtitle">
     คุณได้รับเชิญให้เข้าร่วมกลุ่ม
   </p>
