@@ -1,14 +1,5 @@
 <script>
-  import Meta from "../components/Meta.svelte"
-
-  const metadata = {
-    title: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
-    description: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
-    image: 'images/og.jpg',
-    url:'https://elect.in.th/beforecon2560/'
-  }
-
-  import { fade, fly } from 'svelte/transition'
+  import { fly } from 'svelte/transition'
 
   let w
 
@@ -80,11 +71,6 @@
     margin-top: 0;
   }
 </style>
-
-<svelte:head>
-  <title>ก่อนจะเป็นรัฐธรรมนูญ 2560 - ตัวอย่างสมาชิก</title>
-  <Meta {metadata} />
-</svelte:head>
 
 <!-- <h1>สมาชิก</h1> -->
 

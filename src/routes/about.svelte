@@ -1,13 +1,4 @@
 <script>
-  import Meta from '../components/Meta.svelte'
-
-  const metadata = {
-    title: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
-    description: 'ก่อนจะเป็นรัฐธรรมนูญ 2560',
-    image: 'images/og.jpg',
-    url:'https://elect.in.th/beforecon2560/'
-  }
-
   let w
   const source_links = [
     "http://ethesisarchive.library.tu.ac.th/thesis/2017/TU_2017_5803011310_7591_6090.pdf",
@@ -65,11 +56,6 @@
     text-decoration: underline;
   }
 </style>
-
-<svelte:head>
-  <title>ก่อนจะเป็นรัฐธรรมนูญ 2560 - เกี่ยวกับโครงการ</title>
-  <Meta {metadata}/>
-</svelte:head>
 
 <!-- <h1>เกี่ยวกับโครงการ</h1> -->
 
